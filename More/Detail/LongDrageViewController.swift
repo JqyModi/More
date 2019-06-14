@@ -132,7 +132,7 @@ class LongDrageViewController: UIViewController {
                         if !self.isPlaying {
                             
                             //建立的SystemSoundID对象
-                            var soundID:SystemSoundID = 0
+                            var soundID:SystemSoundID = SystemSoundID(kSystemSoundID_Vibrate)
                             //获取声音地址
                             let path = Bundle.main.path(forResource: "redpackge_sound", ofType: "mp3")
                             //地址转换
