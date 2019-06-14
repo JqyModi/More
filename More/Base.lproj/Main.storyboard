@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="More" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zz5-53-E06">
+                                <rect key="frame" x="40" y="321.5" width="295" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="85N-V3-9oQ"/>
+                                </constraints>
+                                <state key="normal" title="赛车监控">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dz7-Ap-lDQ" kind="show" identifier="Car" id="9zO-9B-KyR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Jh-r3-Hpu">
+                                <rect key="frame" x="40" y="237.5" width="295" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="飞艇监控">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dz7-Ap-lDQ" kind="show" identifier="Ship" id="2Kj-um-edV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.23921568630000001" green="0.80784313730000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4Jh-r3-Hpu" firstAttribute="height" secondItem="zz5-53-E06" secondAttribute="height" id="4X8-SV-y3f"/>
+                            <constraint firstItem="4Jh-r3-Hpu" firstAttribute="leading" secondItem="zz5-53-E06" secondAttribute="leading" id="AT2-ZE-Fx7"/>
+                            <constraint firstItem="4Jh-r3-Hpu" firstAttribute="trailing" secondItem="zz5-53-E06" secondAttribute="trailing" id="Ayn-te-Bi5"/>
+                            <constraint firstItem="zz5-53-E06" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="CpX-bA-6t6"/>
+                            <constraint firstItem="zz5-53-E06" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="D6x-Rg-bR5"/>
+                            <constraint firstItem="zz5-53-E06" firstAttribute="top" secondItem="4Jh-r3-Hpu" secondAttribute="bottom" constant="40" id="P0B-4O-LZr"/>
+                            <constraint firstItem="zz5-53-E06" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="idM-TU-jLO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zz5-53-E06" secondAttribute="trailing" constant="40" id="vaB-FH-frx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Long Drage View Controller-->
+        <scene sceneID="exW-x6-z1l">
+            <objects>
+                <viewController id="dz7-Ap-lDQ" customClass="LongDrageViewController" customModule="More" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T9I-Lb-0W1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长龙最大" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDN-3P-djI">
+                                <rect key="frame" x="40" y="177.5" width="80" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="4pt-sa-kKp"/>
+                                    <constraint firstAttribute="height" constant="44" id="QBf-fn-QVI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i2-bf-hQU">
+                                <rect key="frame" x="40" y="321.5" width="295" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="aQl-FR-1MZ"/>
+                                </constraints>
+                                <state key="normal" title="开始监控">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makeToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startListening:" destination="dz7-Ap-lDQ" eventType="touchUpInside" id="xzz-eU-9se"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入长龙临界值" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-k0-uW3">
+                                <rect key="frame" x="120" y="177.5" width="215" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpV-VA-gaH">
+                                <rect key="frame" x="21" y="35" width="50" height="30"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="qET-Ml-ULA"/>
+                                </constraints>
+                                <state key="normal" title="返回">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="dz7-Ap-lDQ" eventType="touchUpInside" id="9lk-QO-jew"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.23921568630000001" green="0.80784313730000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3i2-bf-hQU" firstAttribute="leading" secondItem="mz8-ha-kko" secondAttribute="leading" constant="40" id="7mC-qA-FbE"/>
+                            <constraint firstItem="3i2-bf-hQU" firstAttribute="centerY" secondItem="mz8-ha-kko" secondAttribute="centerY" id="9XV-IB-UaA"/>
+                            <constraint firstItem="UpV-VA-gaH" firstAttribute="leading" secondItem="mz8-ha-kko" secondAttribute="leading" constant="21" id="Avo-Z2-ZAD"/>
+                            <constraint firstItem="3i2-bf-hQU" firstAttribute="centerX" secondItem="mz8-ha-kko" secondAttribute="centerX" id="BQd-89-7Kd"/>
+                            <constraint firstItem="TDN-3P-djI" firstAttribute="centerY" secondItem="ye2-k0-uW3" secondAttribute="centerY" id="FaR-Ym-EKW"/>
+                            <constraint firstItem="3i2-bf-hQU" firstAttribute="top" secondItem="TDN-3P-djI" secondAttribute="bottom" constant="100" id="GkA-kJ-tEC"/>
+                            <constraint firstItem="ye2-k0-uW3" firstAttribute="trailing" secondItem="3i2-bf-hQU" secondAttribute="trailing" id="H78-0Q-wYw"/>
+                            <constraint firstItem="TDN-3P-djI" firstAttribute="leading" secondItem="3i2-bf-hQU" secondAttribute="leading" id="Jxs-MS-OzU"/>
+                            <constraint firstItem="UpV-VA-gaH" firstAttribute="top" secondItem="mz8-ha-kko" secondAttribute="top" constant="15" id="TZW-vV-wT4"/>
+                            <constraint firstItem="TDN-3P-djI" firstAttribute="height" secondItem="ye2-k0-uW3" secondAttribute="height" id="hAU-PT-cjV"/>
+                            <constraint firstItem="ye2-k0-uW3" firstAttribute="leading" secondItem="TDN-3P-djI" secondAttribute="trailing" id="hq5-Ur-Uq8"/>
+                            <constraint firstItem="mz8-ha-kko" firstAttribute="trailing" secondItem="3i2-bf-hQU" secondAttribute="trailing" constant="40" id="oik-hW-768"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mz8-ha-kko"/>
+                    </view>
+                    <connections>
+                        <outlet property="longdrageMaxValue" destination="ye2-k0-uW3" id="D6x-ng-K7k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dOk-bZ-Svg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="99"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="2Kj-um-edV"/>
+    </inferredMetricsTieBreakers>
+</document>

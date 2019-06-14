@@ -1,0 +1,6 @@
+framework module Pods_More {
+  umbrella header "Pods-More-umbrella.h"
+
+  export *
+  module * { export * }
+}
