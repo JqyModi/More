@@ -130,3 +130,65 @@ class LongDrageViewController: UIViewController {
     }
     
 }
+extension LongDrageViewController {
+//    #pragma mark - VoIP
+//
+//    - (void)setupBackgroundHandler
+//    {
+//    if( UIUDeviceIsBackgroundSupported() )
+//
+//    if(
+//    [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler: ^
+//    {
+//    [self requestServerHowManyUnreadMessages];
+//    }
+//    ]
+//    )
+//    {
+//    UDLog(@"Set Background handler successed!");
+//    }
+//    else
+//    {//failed
+//    UDLog(@"Set Background handler failed!");
+//    }
+//    }
+//    else
+//    {
+//    UDLog(@"This Deviece is not Background supported.");
+//    }
+//}
+
+    func setupBackgroundHandler() {
+        //
+        if UIApplication.shared.setKeepAliveTimeout(600, handler: {
+            self.requestServerHowManyUnreadMessages()
+        }) {
+            print("Set Background handler successed!")
+        }else {
+            print("Set Background handler failed!")
+        }
+    }
+    
+    func requestServerHowManyUnreadMessages() {
+        let app = UIApplication.shared
+        if app.applicationState == UIApplication.State.background {
+            let oldNotifications = app.scheduledLocalNotifications
+            if oldNotifications?.count ?? 0 > 0 {
+                app.cancelAllLocalNotifications()
+            }
+            let alarm = UILocalNotification.init()
+            alarm.fireDate = Date.init(timeIntervalSinceNow: 15)
+            alarm.timeZone = TimeZone.current
+            alarm.repeatInterval = []
+            alarm.soundName = UILocalNotificationDefaultSoundName
+            alarm.alertBody = "Time to request MOA2 Server!"
+            app.scheduleLocalNotification(alarm)
+        }else if app.applicationState == UIApplication.State.active {
+            let alertView = UIAlertView()
+            alertView.title = "alert"
+            alertView.message = "Time to request MOA2 Server!"
+            alertView.addButton(withTitle: "cancel")
+            alertView.show()
+        }
+    }
+}
