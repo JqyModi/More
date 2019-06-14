@@ -1,16 +1,24 @@
 PODS:
+  - DOUAudioStreamer (0.2.15)
   - ObjectMapper (3.4.2)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - DOUAudioStreamer
   - ObjectMapper
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - DOUAudioStreamer
     - ObjectMapper
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
+  DOUAudioStreamer: 14f217bab01b52171fc2bd7d96e1f8fdd50fce68
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 640365d8a9a45e8cf45b92c5b8b45079d22cd202
+PODFILE CHECKSUM: 0e96788f36f14a00a0733fffd93fd61a080289a0
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.6.1

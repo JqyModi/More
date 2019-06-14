@@ -7,7 +7,9 @@ target 'More' do
 
   # Pods for More
   pod "ObjectMapper"
-
+  pod "SVProgressHUD"
+  pod "DOUAudioStreamer"
+  
   target 'MoreTests' do
     inherit! :search_paths
     # Pods for testing

@@ -18,6 +18,8 @@
 		C56B4EF922A5447B0024607C /* MoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4EF822A5447B0024607C /* MoreUITests.swift */; };
 		C56B4F0822B2A0BC0024607C /* LongDrageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4F0722B2A0BC0024607C /* LongDrageViewController.swift */; };
 		C56B4F0B22B2A9D80024607C /* LongDragonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4F0A22B2A9D80024607C /* LongDragonModel.swift */; };
+		C5B24DD822B3A8780019D55F /* silent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5B24DD722B3A8780019D55F /* silent.mp3 */; };
+		C5B24DDA22B3ABB60019D55F /* redpackge_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5B24DD922B3ABB60019D55F /* redpackge_sound.mp3 */; };
 		E53FAC96C842B8EE39DA00B5 /* Pods_MoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57816FCBD476AEBC95CDD9FA /* Pods_MoreUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,9 @@
 		C56B4EFA22A5447B0024607C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C56B4F0722B2A0BC0024607C /* LongDrageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongDrageViewController.swift; sourceTree = "<group>"; };
 		C56B4F0A22B2A9D80024607C /* LongDragonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongDragonModel.swift; sourceTree = "<group>"; };
+		C5B24DD022B3986C0019D55F /* More-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "More-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5B24DD722B3A8780019D55F /* silent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silent.mp3; sourceTree = "<group>"; };
+		C5B24DD922B3ABB60019D55F /* redpackge_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = redpackge_sound.mp3; sourceTree = "<group>"; };
 		F36EDE64E929B33721A31C83 /* Pods-MoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreUITests.release.xcconfig"; path = "Target Support Files/Pods-MoreUITests/Pods-MoreUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F77BE3DAD1FB11817D25ED00 /* Pods-MoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreUITests.debug.xcconfig"; path = "Target Support Files/Pods-MoreUITests/Pods-MoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +146,7 @@
 		C56B4ED722A544780024607C /* More */ = {
 			isa = PBXGroup;
 			children = (
+				C5B24DD422B3A8460019D55F /* AudioFile */,
 				C56B4F0922B2A9BC0024607C /* Model */,
 				C56B4F0622B2A0180024607C /* Detail */,
 				C56B4ED822A544780024607C /* AppDelegate.swift */,
@@ -148,6 +154,7 @@
 				C56B4EDC22A544780024607C /* Main.storyboard */,
 				C56B4EDF22A5447A0024607C /* Assets.xcassets */,
 				C56B4EE122A5447A0024607C /* LaunchScreen.storyboard */,
+				C5B24DD022B3986C0019D55F /* More-Bridging-Header.h */,
 				C56B4EE422A5447A0024607C /* Info.plist */,
 			);
 			path = More;
@@ -185,6 +192,15 @@
 				C56B4F0A22B2A9D80024607C /* LongDragonModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C5B24DD422B3A8460019D55F /* AudioFile */ = {
+			isa = PBXGroup;
+			children = (
+				C5B24DD922B3ABB60019D55F /* redpackge_sound.mp3 */,
+				C5B24DD722B3A8780019D55F /* silent.mp3 */,
+			);
+			path = AudioFile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +275,12 @@
 				TargetAttributes = {
 					C56B4ED422A544780024607C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					C56B4EE822A5447B0024607C = {
 						CreatedOnToolsVersion = 10.1;
@@ -298,6 +320,8 @@
 				C56B4EE322A5447A0024607C /* LaunchScreen.storyboard in Resources */,
 				C56B4EE022A5447A0024607C /* Assets.xcassets in Resources */,
 				C56B4EDE22A544780024607C /* Main.storyboard in Resources */,
+				C5B24DDA22B3ABB60019D55F /* redpackge_sound.mp3 in Resources */,
+				C5B24DD822B3A8780019D55F /* silent.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,13 +417,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-More/Pods-More-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DOUAudioStreamer/DOUAudioStreamer.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DOUAudioStreamer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -592,6 +620,7 @@
 			baseConfigurationReference = A81A8A4E8650B0BBA925FFA3 /* Pods-More.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KU3Z84AU8W;
 				INFOPLIST_FILE = More/Info.plist;
@@ -602,6 +631,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.modi.More;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "More/More-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -612,6 +643,7 @@
 			baseConfigurationReference = 8633935119C5464E85333EC4 /* Pods-More.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KU3Z84AU8W;
 				INFOPLIST_FILE = More/Info.plist;
@@ -622,6 +654,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.modi.More;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "More/More-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
