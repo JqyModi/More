@@ -122,7 +122,7 @@ class LongDrageViewController: UIViewController {
             if let dragonModels = ldModel.data_result?.data_data {
                 for item in dragonModels {
                     let count = item.data_count
-                    if count > self.number {
+                    if count >= self.number {
                         // 报警
                         //建立的SystemSoundID对象
                         //                            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
@@ -134,7 +134,8 @@ class LongDrageViewController: UIViewController {
                             //建立的SystemSoundID对象
                             var soundID:SystemSoundID = SystemSoundID(kSystemSoundID_Vibrate)
                             //获取声音地址
-                            let path = Bundle.main.path(forResource: "redpackge_sound", ofType: "mp3")
+                            let path = Bundle.main.path(forResource: "media.io_66724", ofType: "wav")
+//                            let path = Bundle.main.path(forResource: "69153", ofType: "wav")
                             //地址转换
                             let baseURL = NSURL(fileURLWithPath: path!)
                             //赋值
@@ -150,7 +151,13 @@ class LongDrageViewController: UIViewController {
                             }, observer)
                             
                             //播放声音
-                            AudioServicesPlaySystemSound(soundID)
+//                            AudioServicesPlaySystemSound(soundID)
+                            
+                            // 暂停播放音乐
+                            self.streamer.pause()
+                            
+                            AudioServicesPlayAlertSound(soundID)
+                            
                             self.isPlaying = true
                         }
                     }
@@ -166,6 +173,9 @@ class LongDrageViewController: UIViewController {
         isPlaying = false
         AudioServicesRemoveSystemSoundCompletion(soundID)
         AudioServicesDisposeSystemSoundID(soundID)
+        
+        // 继续播放音乐
+        streamer.play()
     }
     
     // MARK: - 轮询监控
