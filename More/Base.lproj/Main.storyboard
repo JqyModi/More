@@ -80,6 +80,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="双面差值" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utE-gG-Fvk">
+                                <rect key="frame" x="40" y="102" width="80" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="1bO-5A-K3f"/>
+                                    <constraint firstAttribute="height" constant="44" id="yTW-zs-eYS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makeToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入双面临界值" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sKa-yw-36S">
+                                <rect key="frame" x="120" y="102" width="215" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makeToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长龙最大" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDN-3P-djI">
                                 <rect key="frame" x="40" y="177.5" width="80" height="44"/>
                                 <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,6 +127,19 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makeToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入长龙临界值" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-k0-uW3">
+                                <rect key="frame" x="120" y="177.5" width="215" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makeToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i2-bf-hQU">
                                 <rect key="frame" x="40" y="321.5" width="295" height="44"/>
                                 <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -116,19 +159,6 @@
                                     <action selector="startListening:" destination="dz7-Ap-lDQ" eventType="touchUpInside" id="xzz-eU-9se"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入长龙临界值" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ye2-k0-uW3">
-                                <rect key="frame" x="120" y="177.5" width="215" height="44"/>
-                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makeToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpV-VA-gaH">
                                 <rect key="frame" x="21" y="35" width="50" height="30"/>
                                 <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -155,29 +185,51 @@
                                     <constraint firstAttribute="width" constant="40" id="Qzb-cd-Jhe"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93E-ud-hWj">
+                                <rect key="frame" x="40" y="244" width="295" height="44"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="E0q-lI-Shy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.90196078430000004" green="0.086274509799999996" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.23921568630000001" green="0.80784313730000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="utE-gG-Fvk" firstAttribute="centerY" secondItem="sKa-yw-36S" secondAttribute="centerY" id="1NO-Kb-DvT"/>
                             <constraint firstItem="3i2-bf-hQU" firstAttribute="leading" secondItem="mz8-ha-kko" secondAttribute="leading" constant="40" id="7mC-qA-FbE"/>
                             <constraint firstItem="3i2-bf-hQU" firstAttribute="centerY" secondItem="mz8-ha-kko" secondAttribute="centerY" id="9XV-IB-UaA"/>
                             <constraint firstItem="UpV-VA-gaH" firstAttribute="leading" secondItem="mz8-ha-kko" secondAttribute="leading" constant="21" id="Avo-Z2-ZAD"/>
+                            <constraint firstItem="93E-ud-hWj" firstAttribute="centerX" secondItem="3i2-bf-hQU" secondAttribute="centerX" id="AxY-Od-kYS"/>
                             <constraint firstItem="3i2-bf-hQU" firstAttribute="centerX" secondItem="mz8-ha-kko" secondAttribute="centerX" id="BQd-89-7Kd"/>
                             <constraint firstItem="TDN-3P-djI" firstAttribute="centerY" secondItem="ye2-k0-uW3" secondAttribute="centerY" id="FaR-Ym-EKW"/>
+                            <constraint firstItem="TDN-3P-djI" firstAttribute="top" secondItem="utE-gG-Fvk" secondAttribute="bottom" constant="31.5" id="GSd-a6-XDa"/>
                             <constraint firstItem="3i2-bf-hQU" firstAttribute="top" secondItem="TDN-3P-djI" secondAttribute="bottom" constant="100" id="GkA-kJ-tEC"/>
                             <constraint firstItem="ye2-k0-uW3" firstAttribute="trailing" secondItem="3i2-bf-hQU" secondAttribute="trailing" id="H78-0Q-wYw"/>
                             <constraint firstItem="TDN-3P-djI" firstAttribute="leading" secondItem="3i2-bf-hQU" secondAttribute="leading" id="Jxs-MS-OzU"/>
+                            <constraint firstItem="utE-gG-Fvk" firstAttribute="height" secondItem="sKa-yw-36S" secondAttribute="height" id="P6i-bm-4Jt"/>
                             <constraint firstItem="c8N-tS-TJG" firstAttribute="top" secondItem="3i2-bf-hQU" secondAttribute="bottom" constant="40" id="Si5-IA-GJD"/>
                             <constraint firstItem="UpV-VA-gaH" firstAttribute="top" secondItem="mz8-ha-kko" secondAttribute="top" constant="15" id="TZW-vV-wT4"/>
+                            <constraint firstItem="sKa-yw-36S" firstAttribute="leading" secondItem="utE-gG-Fvk" secondAttribute="trailing" id="Y81-kF-swi"/>
+                            <constraint firstItem="sKa-yw-36S" firstAttribute="trailing" secondItem="ye2-k0-uW3" secondAttribute="trailing" id="Ydg-qa-2K2"/>
+                            <constraint firstItem="utE-gG-Fvk" firstAttribute="leading" secondItem="TDN-3P-djI" secondAttribute="leading" id="c53-0r-bK8"/>
+                            <constraint firstItem="3i2-bf-hQU" firstAttribute="top" secondItem="93E-ud-hWj" secondAttribute="bottom" constant="33.5" id="dZ7-kx-NJQ"/>
+                            <constraint firstItem="93E-ud-hWj" firstAttribute="trailing" secondItem="3i2-bf-hQU" secondAttribute="trailing" id="gs3-sb-IJ1"/>
                             <constraint firstItem="TDN-3P-djI" firstAttribute="height" secondItem="ye2-k0-uW3" secondAttribute="height" id="hAU-PT-cjV"/>
                             <constraint firstItem="ye2-k0-uW3" firstAttribute="leading" secondItem="TDN-3P-djI" secondAttribute="trailing" id="hq5-Ur-Uq8"/>
                             <constraint firstItem="mz8-ha-kko" firstAttribute="trailing" secondItem="3i2-bf-hQU" secondAttribute="trailing" constant="40" id="oik-hW-768"/>
+                            <constraint firstItem="93E-ud-hWj" firstAttribute="leading" secondItem="3i2-bf-hQU" secondAttribute="leading" id="on0-Vm-up1"/>
                             <constraint firstItem="c8N-tS-TJG" firstAttribute="centerX" secondItem="3i2-bf-hQU" secondAttribute="centerX" id="v7R-Pn-chz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mz8-ha-kko"/>
                     </view>
                     <connections>
+                        <outlet property="doubleMaxValue" destination="sKa-yw-36S" id="eqn-R0-BL6"/>
                         <outlet property="indicator" destination="c8N-tS-TJG" id="U0w-SJ-zdY"/>
                         <outlet property="longdrageMaxValue" destination="ye2-k0-uW3" id="D6x-ng-K7k"/>
+                        <outlet property="resultValue" destination="93E-ud-hWj" id="piV-97-7IY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOk-bZ-Svg" userLabel="First Responder" sceneMemberID="firstResponder"/>

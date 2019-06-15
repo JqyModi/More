@@ -20,6 +20,10 @@
 		C56B4F0B22B2A9D80024607C /* LongDragonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4F0A22B2A9D80024607C /* LongDragonModel.swift */; };
 		C56B4F1922B3F1C00024607C /* media.io_66724.wav in Resources */ = {isa = PBXBuildFile; fileRef = C56B4F1822B3F1C00024607C /* media.io_66724.wav */; };
 		C56B4F1B22B3FB230024607C /* 69153.wav in Resources */ = {isa = PBXBuildFile; fileRef = C56B4F1A22B3FB230024607C /* 69153.wav */; };
+		C56B4F1D22B48E2D0024607C /* ModelTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4F1C22B48E2D0024607C /* ModelTools.swift */; };
+		C56B4F1F22B491150024607C /* DoubleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4F1E22B491150024607C /* DoubleModel.swift */; };
+		C56B4F2122B492A60024607C /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4F2022B492A60024607C /* HistoryModel.swift */; };
+		C56B4F2322B4935A0024607C /* Mp3Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4F2222B4935A0024607C /* Mp3Model.swift */; };
 		C5B24DD822B3A8780019D55F /* silent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5B24DD722B3A8780019D55F /* silent.mp3 */; };
 		C5B24DDA22B3ABB60019D55F /* redpackge_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5B24DD922B3ABB60019D55F /* redpackge_sound.mp3 */; };
 		E53FAC96C842B8EE39DA00B5 /* Pods_MoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57816FCBD476AEBC95CDD9FA /* Pods_MoreUITests.framework */; };
@@ -67,6 +71,10 @@
 		C56B4F0A22B2A9D80024607C /* LongDragonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongDragonModel.swift; sourceTree = "<group>"; };
 		C56B4F1822B3F1C00024607C /* media.io_66724.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = media.io_66724.wav; sourceTree = "<group>"; };
 		C56B4F1A22B3FB230024607C /* 69153.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 69153.wav; sourceTree = "<group>"; };
+		C56B4F1C22B48E2D0024607C /* ModelTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTools.swift; sourceTree = "<group>"; };
+		C56B4F1E22B491150024607C /* DoubleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModel.swift; sourceTree = "<group>"; };
+		C56B4F2022B492A60024607C /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		C56B4F2222B4935A0024607C /* Mp3Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mp3Model.swift; sourceTree = "<group>"; };
 		C5B24DD022B3986C0019D55F /* More-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "More-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5B24DD722B3A8780019D55F /* silent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silent.mp3; sourceTree = "<group>"; };
 		C5B24DD922B3ABB60019D55F /* redpackge_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = redpackge_sound.mp3; sourceTree = "<group>"; };
@@ -194,6 +202,10 @@
 			isa = PBXGroup;
 			children = (
 				C56B4F0A22B2A9D80024607C /* LongDragonModel.swift */,
+				C56B4F1C22B48E2D0024607C /* ModelTools.swift */,
+				C56B4F1E22B491150024607C /* DoubleModel.swift */,
+				C56B4F2022B492A60024607C /* HistoryModel.swift */,
+				C56B4F2222B4935A0024607C /* Mp3Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,9 +461,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C56B4F1F22B491150024607C /* DoubleModel.swift in Sources */,
+				C56B4F1D22B48E2D0024607C /* ModelTools.swift in Sources */,
+				C56B4F2322B4935A0024607C /* Mp3Model.swift in Sources */,
 				C56B4F0B22B2A9D80024607C /* LongDragonModel.swift in Sources */,
 				C56B4EDB22A544780024607C /* ViewController.swift in Sources */,
 				C56B4ED922A544780024607C /* AppDelegate.swift in Sources */,
+				C56B4F2122B492A60024607C /* HistoryModel.swift in Sources */,
 				C56B4F0822B2A0BC0024607C /* LongDrageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
