@@ -131,7 +131,7 @@ class LongDrageViewController: UIViewController {
         self.end = true
         SVProgressHUD.dismiss()
         
-        streamer.pause()
+//        streamer.pause()
     }
     
     @IBAction func startListening(_ sender: UIButton) {
@@ -262,7 +262,7 @@ class LongDrageViewController: UIViewController {
             //                            AudioServicesPlaySystemSound(soundID)
             
             // 暂停播放音乐
-            self.streamer.pause()
+//            self.streamer.pause()
             // 播放音效并带震动
             AudioServicesPlayAlertSound(soundID)
             
@@ -278,7 +278,7 @@ class LongDrageViewController: UIViewController {
         AudioServicesDisposeSystemSoundID(soundID)
         
         // 继续播放音乐
-        streamer.play()
+//        streamer.play()
     }
     
 }
