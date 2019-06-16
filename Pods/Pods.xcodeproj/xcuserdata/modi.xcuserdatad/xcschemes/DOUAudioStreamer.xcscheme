@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3DF4ED7C0D9323A62BFB649F7D6188DC"
-               BuildableName = "DOUAudioStreamer.framework"
+               BlueprintIdentifier = "DF3823841541A30C88B2CD26B472B0CD"
                BlueprintName = "DOUAudioStreamer"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "DOUAudioStreamer.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

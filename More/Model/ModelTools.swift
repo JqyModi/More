@@ -303,12 +303,12 @@ extension ModelTools {
                     if offset >= doubleNumber {
                         // 三级报警：双面差值比较
                         let pt = "双面差值已达到临界条件"
-                        self.playSoundByText(text: pt, lotCode: lotCode)
+//                        self.playSoundByText(text: pt, lotCode: lotCode)
                         if let f = finished {
                             f(text)
                         }
                     }else {
-                        self.playSoundByText(text: text, lotCode: lotCode)
+//                        self.playSoundByText(text: text, lotCode: lotCode)
                         if let f = finished {
                             f(text)
                         }
@@ -326,7 +326,7 @@ extension ModelTools {
                             f(text)
                         }
                         
-                        self.playSoundByText(text: text, lotCode: lotCode)
+//                        self.playSoundByText(text: text, lotCode: lotCode)
                         break
                     }
                 }

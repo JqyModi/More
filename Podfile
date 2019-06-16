@@ -9,6 +9,8 @@ target 'More' do
   pod "ObjectMapper"
   pod "SVProgressHUD"
   pod "DOUAudioStreamer"
+  pod 'SelectionList'
+  pod "IQKeyboardManager"
   
   target 'MoreTests' do
     inherit! :search_paths

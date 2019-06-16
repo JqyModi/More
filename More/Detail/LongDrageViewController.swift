@@ -11,17 +11,39 @@ import ObjectMapper
 import AudioUnit
 import AVFoundation
 import DOUAudioStreamer
+import SelectionList
+import SVProgressHUD
+
+private struct Constant {
+    static let enableColor = UIColor.init(red: 35/255, green: 173/255, blue: 229/255, alpha: 1.0)
+    static let disEnableColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1.0)
+    static let identifier = "Cell"
+}
 
 class LongDrageViewController: UIViewController {
-
+    
+    @IBOutlet weak var timeOffsetValue: UITextField!
     @IBOutlet weak var doubleMaxValue: UITextField!
     @IBOutlet weak var longdrageMaxValue: UITextField!
     @IBOutlet weak var resultValue: UILabel!
-    @IBOutlet weak var indicator: UIActivityIndicatorView! {
+    @IBOutlet weak var startListening: UIButton!
+    @IBOutlet weak var stopListening: UIButton!
+    
+    @IBOutlet var selectionList: SelectionList!
+    
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            indicator.color = UIColor.init(red: 35/255, green: 173/255, blue: 229/255, alpha: 1.0)
+            tableView.layer.cornerRadius = 5
+            tableView.layer.masksToBounds = true
+            tableView.tableFooterView = UIView()
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constant.identifier)
         }
     }
+    var datas = [String]()
+    
+    @IBOutlet var labels: [UILabel]!
     
     //表示当前是否在播放
     var isPlaying = false
@@ -51,20 +73,30 @@ class LongDrageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        selectionList.items = ["北京PK10", "幸运飞艇"]
+//        selectionList.selectedIndexes = [0, 1]
+        selectionList.addTarget(self, action: #selector(selectionChanged), for: .valueChanged)
+        selectionList.setupCell = { (cell: UITableViewCell, _: Int) in
+            cell.textLabel?.textColor = .gray
+        }
+    }
+    
+    @objc func selectionChanged() {
+        print(selectionList.selectedIndexes)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        longdrageMaxValue.becomeFirstResponder()
+        self.doubleMaxValue.becomeFirstResponder()
         // 开启轮询
-        end = true
+        end = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        doubleMaxValue.resignFirstResponder()
         longdrageMaxValue.resignFirstResponder()
         // 结束轮询
         end = true
@@ -74,12 +106,41 @@ class LongDrageViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func startListening(_ sender: UIButton) {
-        self.playSilentMusic()
+    @IBAction func stopListening(_ sender: UIButton) {
         
+        stopListening.isEnabled = false
+        startListening.isEnabled = true
+        stopListening.backgroundColor = Constant.disEnableColor
+        startListening.backgroundColor = Constant.enableColor
+        
+        self.end = true
+        SVProgressHUD.dismiss()
+        
+        streamer.pause()
+    }
+    
+    @IBAction func startListening(_ sender: UIButton) {
+        
+        //时间赋值
+        self.offsetTime = Int(timeOffsetValue.text ?? "0") ?? 0
+        
+        doubleMaxValue.resignFirstResponder()
         longdrageMaxValue.resignFirstResponder()
         
+        if selectionList.selectedIndexes.count == 0 {
+            SVProgressHUD.showInfo(withStatus: "请选择要监控的彩票")
+            return
+        }
+        
         if let text = longdrageMaxValue.text, text != "", let dtext = doubleMaxValue.text, dtext != "" {
+            
+            startListening.isEnabled = false
+            stopListening.isEnabled = true
+            startListening.backgroundColor = Constant.disEnableColor
+            stopListening.backgroundColor = Constant.enableColor
+            
+            self.playSilentMusic()
+            
             let number = Int(text) ?? 0
             let doubleNumber: Int = Int(dtext) ?? 0
             
@@ -90,6 +151,7 @@ class LongDrageViewController: UIViewController {
             Thread.detachNewThread {
                 self.startRunLoop()
             }
+            
         }else {
             print("请输入长龙临界值")
             SVProgressHUD.showInfo(withStatus: "请输入长龙临界值")
@@ -111,12 +173,36 @@ class LongDrageViewController: UIViewController {
     }
     
     func handlerResult() {
-        var lotCode = type == 0 ? "10001" : "10057"
-        let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text) in
-            DispatchQueue.main.async {
-                self.resultValue.text = text
+        
+        if selectionList.selectedIndexes.contains(0) {
+            var lotCode = "10001"
+            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text) in
+                DispatchQueue.main.async {
+//                    self.resultValue.text = text
+                    if self.datas.contains(text) {
+                        return
+                    }
+                    self.datas.append(text)
+                    self.tableView.reloadData()
+                    self.playAlarm()
+                }
             }
         }
+        if selectionList.selectedIndexes.contains(1) {
+            var lotCode = "10057"
+            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text) in
+                DispatchQueue.main.async {
+//                    self.resultValue.text = text
+                    if self.datas.contains(text) {
+                        return
+                    }
+                    self.datas.append(text)
+                    self.tableView.reloadData()
+                    self.playAlarm()
+                }
+            }
+        }
+        
     }
     
     func playSilentMusic() {
@@ -179,11 +265,11 @@ extension LongDrageViewController {
     func startRunLoop() {
         end = false
         let runLoop = RunLoop.current
-        let timer = Timer(timeInterval: TimeInterval(offsetTime), repeats: true) { (timer) in
+        let timer = Timer(timeInterval: TimeInterval(10), repeats: true) { (timer) in
             print("定时任务轮询中···")
             DispatchQueue.main.async {
-                self.indicator.startAnimating()
-                
+//                self.indicator.startAnimating()
+                SVProgressHUD.show()
                 self.handlerResult()
             }
         }
@@ -192,10 +278,24 @@ extension LongDrageViewController {
             runLoop.run(until: Date.init(timeIntervalSinceNow: 3.0))
         }
         DispatchQueue.main.async {
-            self.indicator.stopAnimating()
+//            self.indicator.stopAnimating()
         }
     }
 }
 
-
+extension LongDrageViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datas.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: Constant.identifier)!
+        cell.textLabel?.text = datas[indexPath.row]
+        cell.textLabel?.textColor = UIColor.red
+        cell.textLabel?.textAlignment = .center
+        return cell
+    }
+    
+    
+}
 
