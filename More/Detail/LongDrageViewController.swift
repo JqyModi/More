@@ -18,6 +18,8 @@ private struct Constant {
     static let enableColor = UIColor.init(red: 35/255, green: 173/255, blue: 229/255, alpha: 1.0)
     static let disEnableColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1.0)
     static let identifier = "Cell"
+    static let PK10Tag = "赛车🏁："
+    static let ShipTag = "飞艇🏁："
 }
 
 class LongDrageViewController: UIViewController {
@@ -43,7 +45,14 @@ class LongDrageViewController: UIViewController {
     }
     var datas = [String]()
     
-    @IBOutlet var labels: [UILabel]!
+    @IBOutlet var labels: [UILabel]! {
+        didSet {
+            for item in labels {
+                item.layer.cornerRadius = 5
+                item.layer.masksToBounds = true
+            }
+        }
+    }
     
     //表示当前是否在播放
     var isPlaying = false
@@ -58,6 +67,7 @@ class LongDrageViewController: UIViewController {
             }
         }
     }
+    var level = -1
     
     var offsetTime = 120 // 默认两分钟监听一次
     
@@ -88,7 +98,7 @@ class LongDrageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.doubleMaxValue.becomeFirstResponder()
+//        self.doubleMaxValue.becomeFirstResponder()
         // 开启轮询
         end = false
     }
@@ -96,6 +106,7 @@ class LongDrageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        timeOffsetValue.resignFirstResponder()
         doubleMaxValue.resignFirstResponder()
         longdrageMaxValue.resignFirstResponder()
         // 结束轮询
@@ -112,6 +123,10 @@ class LongDrageViewController: UIViewController {
         startListening.isEnabled = true
         stopListening.backgroundColor = Constant.disEnableColor
         startListening.backgroundColor = Constant.enableColor
+        
+        // 清空列表
+        self.datas.removeAll()
+        self.tableView.reloadData()
         
         self.end = true
         SVProgressHUD.dismiss()
@@ -176,13 +191,17 @@ class LongDrageViewController: UIViewController {
         
         if selectionList.selectedIndexes.contains(0) {
             var lotCode = "10001"
-            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text) in
+            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text, level) in
                 DispatchQueue.main.async {
-//                    self.resultValue.text = text
-                    if self.datas.contains(text) {
+                    
+                    self.level = level
+                    
+                    let tempText = Constant.PK10Tag + text
+                    
+                    if self.datas.contains(tempText) {
                         return
                     }
-                    self.datas.append(text)
+                    self.datas.append(tempText)
                     self.tableView.reloadData()
                     self.playAlarm()
                 }
@@ -190,13 +209,17 @@ class LongDrageViewController: UIViewController {
         }
         if selectionList.selectedIndexes.contains(1) {
             var lotCode = "10057"
-            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text) in
+            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text, level) in
                 DispatchQueue.main.async {
-//                    self.resultValue.text = text
-                    if self.datas.contains(text) {
+
+                    self.level = level
+                    
+                    let tempText = Constant.ShipTag + text
+                    
+                    if self.datas.contains(tempText) {
                         return
                     }
-                    self.datas.append(text)
+                    self.datas.append(tempText)
                     self.tableView.reloadData()
                     self.playAlarm()
                 }
@@ -292,7 +315,12 @@ extension LongDrageViewController: UITableViewDataSource, UITableViewDelegate {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: Constant.identifier)!
         cell.textLabel?.text = datas[indexPath.row]
         cell.textLabel?.textColor = UIColor.red
-        cell.textLabel?.textAlignment = .center
+//        cell.textLabel?.textAlignment = .center
+        if level != -1 {
+            // 一级警报：绿标显示
+            cell.textLabel?.textColor = UIColor.green
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+        }
         return cell
     }
     

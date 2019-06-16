@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dz7-Ap-lDQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -189,7 +189,7 @@
                                     <action selector="startListening:" destination="dz7-Ap-lDQ" eventType="touchUpInside" id="xzz-eU-9se"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpV-VA-gaH">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpV-VA-gaH">
                                 <rect key="frame" x="21" y="35" width="50" height="30"/>
                                 <color key="backgroundColor" red="0.13725490200000001" green="0.67843137249999996" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -302,11 +302,9 @@
                         <outlet property="stopListening" destination="QCG-FA-03q" id="9XA-jo-8eQ"/>
                         <outlet property="tableView" destination="4sd-zP-IBV" id="Ryf-vX-zT1"/>
                         <outlet property="timeOffsetValue" destination="UFL-YK-Ndz" id="KUa-hB-F2h"/>
-                        <outletCollection property="labels" destination="utE-gG-Fvk" collectionClass="NSMutableArray" id="xrh-Cj-9pW"/>
-                        <outletCollection property="labels" destination="spe-9Q-R8d" collectionClass="NSMutableArray" id="jzm-Gc-pcO"/>
                         <outletCollection property="labels" destination="utE-gG-Fvk" collectionClass="NSMutableArray" id="TpC-Po-ECy"/>
-                        <outletCollection property="labels" destination="spe-9Q-R8d" collectionClass="NSMutableArray" id="iTW-jx-UaI"/>
                         <outletCollection property="labels" destination="spe-9Q-R8d" collectionClass="NSMutableArray" id="GAG-7e-Ehv"/>
+                        <outletCollection property="labels" destination="TDN-3P-djI" collectionClass="NSMutableArray" id="d5F-9l-5zN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOk-bZ-Svg" userLabel="First Responder" sceneMemberID="firstResponder"/>

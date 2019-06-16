@@ -269,7 +269,7 @@ class ModelTools: NSObject {
 // MARK: - 核心算法
 extension ModelTools {
     
-    class func analysisLongDragon(lotCode: String, number: Int, doubleNumber: Int, finished: ((_ result: String)->Void)?) {
+    class func analysisLongDragon(lotCode: String, number: Int, doubleNumber: Int, finished: ((_ result: String, _ level: Int)->Void)?) {
         
         self.longDragonDatas(lotCode: lotCode) { (model) in
             guard let dragonModels = model.data_result?.data_data else {return}
@@ -305,12 +305,12 @@ extension ModelTools {
                         let pt = "双面差值已达到临界条件"
 //                        self.playSoundByText(text: pt, lotCode: lotCode)
                         if let f = finished {
-                            f(text)
+                            f(text, -1)
                         }
                     }else {
 //                        self.playSoundByText(text: text, lotCode: lotCode)
                         if let f = finished {
-                            f(text)
+                            f(text, -1)
                         }
                     }
                 }
@@ -323,7 +323,7 @@ extension ModelTools {
                         let text = ModelTools.rankMappingToString(tag: d) + ModelTools.stateMappingToString(tag: state) + "\(count)期" + ModelTools.stateMappingToString(tag: item1.data_state) + "\(item1.data_count)期"
                         print(text)
                         if let f = finished {
-                            f(text)
+                            f(text, 1)
                         }
                         
 //                        self.playSoundByText(text: text, lotCode: lotCode)
