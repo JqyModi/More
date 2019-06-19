@@ -71,6 +71,10 @@ class LongDrageViewController: UIViewController {
     
     var offsetTime = 120 // 默认两分钟监听一次
     
+    var vibrationTime = 10 // 默认振动10s
+    
+    var playSoundId: SystemSoundID!
+    
     var end = false
     
     /// 长龙临界值
@@ -243,13 +247,15 @@ class LongDrageViewController: UIViewController {
         if !self.isPlaying {
             //建立的SystemSoundID对象
             var soundID:SystemSoundID = SystemSoundID(kSystemSoundID_Vibrate)
+            
+            self.playSoundId = soundID
             //获取声音地址
-            let path = Bundle.main.path(forResource: "media.io_66724", ofType: "wav")
-            //                            let path = Bundle.main.path(forResource: "69153", ofType: "wav")
-            //地址转换
-            let baseURL = NSURL(fileURLWithPath: path!)
-            //赋值
-            AudioServicesCreateSystemSoundID(baseURL, &soundID)
+//            let path = Bundle.main.path(forResource: "media.io_66724", ofType: "wav")
+//            //                            let path = Bundle.main.path(forResource: "69153", ofType: "wav")
+//            //地址转换
+//            let baseURL = NSURL(fileURLWithPath: path!)
+//            //赋值
+//            AudioServicesCreateSystemSoundID(baseURL, &soundID)
             
             //添加音频结束时的回调
             let observer = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
@@ -257,18 +263,36 @@ class LongDrageViewController: UIViewController {
                 (soundID, inClientData) -> Void in
                 let mySelf = Unmanaged<LongDrageViewController>.fromOpaque(inClientData!)
                     .takeUnretainedValue()
-                mySelf.audioServicesPlaySystemSoundCompleted(soundID: soundID)
+//                mySelf.audioServicesPlaySystemSoundCompleted(soundID: soundID)
+                mySelf.perform(#selector(self.playSound), with: nil, afterDelay: 1.0)
+                
+                mySelf.vibrationTime -=  1
+                if mySelf.vibrationTime <= 0 {
+                    mySelf.vibrationTime = 0
+                }
+                
             }, observer)
             
             //播放声音
-            //                            AudioServicesPlaySystemSound(soundID)
+            AudioServicesPlaySystemSound(soundID)
             
             // 暂停播放音乐
 //            self.streamer.pause()
             // 播放音效并带震动
-            AudioServicesPlayAlertSound(soundID)
+//            AudioServicesPlayAlertSound(soundID)
             
             self.isPlaying = true
+        }
+    }
+    
+    @objc func playSound() {
+        if vibrationTime != 0 {
+            AudioServicesPlaySystemSound(playSoundId)
+        }else {
+            vibrationTime = 10
+            isPlaying = false
+            AudioServicesRemoveSystemSoundCompletion(playSoundId)
+            AudioServicesDisposeSystemSoundID(playSoundId)
         }
     }
     
