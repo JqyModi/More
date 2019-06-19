@@ -275,8 +275,9 @@ extension ModelTools {
         self.longDragonDatas(lotCode: lotCode) { (model) in
             guard let dragonModels = model.data_result?.data_data else {return}
             
-            getCurrentIssue(finished: { (issue) in
-                let issueStr = String(Int(issue)) + "期"
+            getCurrentIssue(lotCode: lotCode,finished: { (issue) in
+                let tempIssueStr = String(Int(issue))
+                let issueStr = tempIssueStr.mySubString(from: tempIssueStr.count-3) + "期"
                 for i in 0..<dragonModels.count {
                     let item = dragonModels[i]
                     let d = item.data_rank
