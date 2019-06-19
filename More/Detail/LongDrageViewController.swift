@@ -199,7 +199,9 @@ class LongDrageViewController: UIViewController {
                     let tempText = Constant.PK10Tag + text
                     
                     if self.datas.contains(tempText) {
-                        return
+                        let tempArr = NSMutableArray(array: self.datas)
+                        tempArr.remove(tempText)
+                        self.datas = tempArr as! [String]
                     }
                     self.datas.append(tempText)
                     self.tableView.reloadData()
