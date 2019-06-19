@@ -14,6 +14,7 @@ let baseURL = "https://api.api861861.com/pks/"
 let longDragonAPI = baseURL + "getPksLongDragonCount.do?date=&lotCode="
 let doubleAPI = baseURL + "getPksDoubleCount.do?date=&lotCode="
 let historyAPI = baseURL + "getPksHistoryList.do?lotCode="
+let ShiCaiDragonAPI = "https://api.api861861.com/CQShiCai/getShiCaiDailyDragonCount.do?lotCode=10060"
 
 class ModelTools: NSObject {
 
@@ -274,64 +275,68 @@ extension ModelTools {
         self.longDragonDatas(lotCode: lotCode) { (model) in
             guard let dragonModels = model.data_result?.data_data else {return}
             
-            for i in 0..<dragonModels.count {
-                let item = dragonModels[i]
-                let d = item.data_rank
-                let count = item.data_count
-                let state = item.data_state
-                // 1.长龙超过给定数值
-                if count >= number {
-                    // 一级警报
-                    var text = ModelTools.rankMappingToString(tag: d) + ModelTools.stateMappingToString(tag: state) + "\(count)期"
-                    print(text)
-                    // 3.根据当前分析号码去获取双面分析差值是否超过给定数值
-                    var type = -1
-                    switch state {
-                    case 1,2:
-                        type = 1
-                        break
-                    case 3,4:
-                        type = 2
-                        break
-                    case 5,6:
-                        type = 3
-                        break
-                    default:
-                        break
-                    }
-//                    let offset = ModelTools.doubleOffsetByTag(tag: d, type: state)
-//                    if offset >= doubleNumber {
-//                        // 三级报警：双面差值比较
-//                        let pt = "双面差值已达到临界条件"
-////                        self.playSoundByText(text: pt, lotCode: lotCode)
-//                        if let f = finished {
-//                            f(text, -1)
-//                        }
-//                    }else {
-////                        self.playSoundByText(text: text, lotCode: lotCode)
-//                        if let f = finished {
-//                            f(text, -1)
-//                        }
-//                    }
-                    
-                    for j in i+1..<dragonModels.count {
-                        let item1 = dragonModels[j]
-                        // 2.长龙并列超过给定数值：如单8期 + 大8期 = 双+小
-                        if d == item1.data_rank, item1.data_count >= number {
-                            // 二级警报
-                            let text1 = ModelTools.rankMappingToString(tag: d) + ModelTools.stateMappingToString(tag: state) + "\(count)期" + ModelTools.stateMappingToString(tag: item1.data_state) + "\(item1.data_count)期"
-                            print(text1)
-                            text = text1
-                            //                        self.playSoundByText(text: text, lotCode: lotCode)
+            getCurrentIssue(finished: { (issue) in
+                let issueStr = String(Int(issue)) + "期"
+                for i in 0..<dragonModels.count {
+                    let item = dragonModels[i]
+                    let d = item.data_rank
+                    let count = item.data_count
+                    let state = item.data_state
+                    // 1.长龙超过给定数值
+                    if count >= number {
+                        // 一级警报
+                        var text = issueStr + ModelTools.rankMappingToString(tag: d) + ModelTools.stateMappingToString(tag: state) + "\(count)期"
+                        print(text)
+                        // 3.根据当前分析号码去获取双面分析差值是否超过给定数值
+                        var type = -1
+                        switch state {
+                        case 1,2:
+                            type = 1
+                            break
+                        case 3,4:
+                            type = 2
+                            break
+                        case 5,6:
+                            type = 3
+                            break
+                        default:
                             break
                         }
-                    }
-                    
-                    if let f = finished {
-                        f(text, -1)
+                        //                    let offset = ModelTools.doubleOffsetByTag(tag: d, type: state)
+                        //                    if offset >= doubleNumber {
+                        //                        // 三级报警：双面差值比较
+                        //                        let pt = "双面差值已达到临界条件"
+                        ////                        self.playSoundByText(text: pt, lotCode: lotCode)
+                        //                        if let f = finished {
+                        //                            f(text, -1)
+                        //                        }
+                        //                    }else {
+                        ////                        self.playSoundByText(text: text, lotCode: lotCode)
+                        //                        if let f = finished {
+                        //                            f(text, -1)
+                        //                        }
+                        //                    }
+                        
+                        for j in i+1..<dragonModels.count {
+                            let item1 = dragonModels[j]
+                            // 2.长龙并列超过给定数值：如单8期 + 大8期 = 双+小
+                            if d == item1.data_rank, item1.data_count >= number {
+                                // 二级警报
+                                let text1 = issueStr + ModelTools.rankMappingToString(tag: d) + ModelTools.stateMappingToString(tag: state) + "\(count)期" + ModelTools.stateMappingToString(tag: item1.data_state) + "\(item1.data_count)期"
+                                print(text1)
+                                text = text1
+                                //                        self.playSoundByText(text: text, lotCode: lotCode)
+                                break
+                            }
+                        }
+                        
+                        if let f = finished {
+                            f(text, -1)
+                        }
                     }
                 }
-            }
+            })
+            
         }
     }
     

@@ -194,44 +194,41 @@ class LongDrageViewController: UIViewController {
     func handlerResult() {
         
         if selectionList.selectedIndexes.contains(0) {
-            var lotCode = "10001"
-            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text, level) in
+            let lotCode = "10001"
+            ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text, level) in
                 DispatchQueue.main.async {
-                    
-                    self.level = level
-                    
-                    let tempText = Constant.PK10Tag + text
-                    
-                    if self.datas.contains(tempText) {
-                        let tempArr = NSMutableArray(array: self.datas)
-                        tempArr.remove(tempText)
-                        self.datas = tempArr as! [String]
-                    }
-                    self.datas.append(tempText)
-                    self.tableView.reloadData()
-                    self.playAlarm()
+                    self.reloadDatas(text: text, type: 0)
                 }
             }
         }
         if selectionList.selectedIndexes.contains(1) {
-            var lotCode = "10057"
-            let text = ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text, level) in
+            let lotCode = "10057"
+            ModelTools.analysisLongDragon(lotCode: lotCode, number: number, doubleNumber: doubleNumber) {(text, level) in
                 DispatchQueue.main.async {
-
-                    self.level = level
-                    
-                    let tempText = Constant.ShipTag + text
-                    
-                    if self.datas.contains(tempText) {
-                        return
-                    }
-                    self.datas.append(tempText)
-                    self.tableView.reloadData()
-                    self.playAlarm()
+                    self.reloadDatas(text: text, type: 1)
                 }
             }
         }
         
+    }
+    
+    private func reloadDatas(text: String, type: Int) {
+        
+        var tempText = Constant.PK10Tag + text
+        
+        if type == 1 {
+            tempText = Constant.ShipTag + text
+        }
+        
+        if self.datas.contains(tempText) {
+//            let tempArr = NSMutableArray(array: self.datas)
+//            tempArr.remove(tempText)
+//            self.datas = tempArr as! [String]
+            return
+        }
+        self.datas.append(tempText)
+        self.tableView.reloadData()
+        self.playAlarm()
     }
     
     func playSilentMusic() {
