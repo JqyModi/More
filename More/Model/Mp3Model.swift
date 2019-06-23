@@ -10,7 +10,7 @@ import DOUAudioStreamer
 
 class Mp3Model: NSObject, DOUAudioFile {
     func audioFileURL() -> URL! {
-        if let path = Bundle.main.path(forResource: "silent.mp3", ofType: nil) {
+        if let path = Bundle.main.path(forResource: "new_test.mp3", ofType: nil) {
             let url = URL(fileURLWithPath: path)
             return url
         }
