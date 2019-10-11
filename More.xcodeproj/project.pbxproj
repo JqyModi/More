@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		917A3F02FF0A09D937EA4E51 /* Pods_More.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E498AA17F66F57D39B5124 /* Pods_More.framework */; };
 		A5BA124056CB339A0D4DCF3A /* Pods_MoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2BE67635CBF3F8C480FAF1 /* Pods_MoreTests.framework */; };
+		C53B453322BF100D00D2E999 /* new_test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C53B453222BF100D00D2E999 /* new_test.mp3 */; };
 		C56B4ED922A544780024607C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4ED822A544780024607C /* AppDelegate.swift */; };
 		C56B4EDB22A544780024607C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B4EDA22A544780024607C /* ViewController.swift */; };
 		C56B4EDE22A544780024607C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C56B4EDC22A544780024607C /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		8926F0CACAE23FC3F6AE9E9A /* Pods-MoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreTests.debug.xcconfig"; path = "Target Support Files/Pods-MoreTests/Pods-MoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A81A8A4E8650B0BBA925FFA3 /* Pods-More.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-More.debug.xcconfig"; path = "Target Support Files/Pods-More/Pods-More.debug.xcconfig"; sourceTree = "<group>"; };
 		BF2BE67635CBF3F8C480FAF1 /* Pods_MoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53B453222BF100D00D2E999 /* new_test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = new_test.mp3; sourceTree = "<group>"; };
 		C56B4ED522A544780024607C /* More.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = More.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56B4ED822A544780024607C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C56B4EDA22A544780024607C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				C56B4F1822B3F1C00024607C /* media.io_66724.wav */,
 				C5B24DD922B3ABB60019D55F /* redpackge_sound.mp3 */,
 				C5B24DD722B3A8780019D55F /* silent.mp3 */,
+				C53B453222BF100D00D2E999 /* new_test.mp3 */,
 			);
 			path = AudioFile;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C56B4EE322A5447A0024607C /* LaunchScreen.storyboard in Resources */,
+				C53B453322BF100D00D2E999 /* new_test.mp3 in Resources */,
 				C56B4EE022A5447A0024607C /* Assets.xcassets in Resources */,
 				C56B4EDE22A544780024607C /* Main.storyboard in Resources */,
 				C5B24DDA22B3ABB60019D55F /* redpackge_sound.mp3 in Resources */,

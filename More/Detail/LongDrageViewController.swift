@@ -53,6 +53,7 @@ class LongDrageViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak var isVibration: UISwitch!
     
     //表示当前是否在播放
     var isPlaying = false
@@ -71,7 +72,7 @@ class LongDrageViewController: UIViewController {
     
     var offsetTime = 120 // 默认两分钟监听一次
     
-    var vibrationTime = 3 // 默认振动10s
+    var vibrationTime = 5 // 默认振动10s
     
     var playSoundId: SystemSoundID!
     
@@ -186,9 +187,27 @@ class LongDrageViewController: UIViewController {
     }
     
     @objc private func updateStatus() {
-        if streamer.status != .playing {
-            streamer.play()
+        if streamer.status == .finished || streamer.status == .error {
+            self.resetStreamer()
         }
+    }
+    
+    private func cancelStreamer() {
+        if streamer != nil {
+            streamer.pause()
+            streamer.removeObserver(self, forKeyPath: "status")
+            streamer = nil
+        }
+    }
+    
+    private func resetStreamer() {
+        self.cancelStreamer()
+        // 为空时会奔溃
+        // music.audioFileURL()
+        streamer = DOUAudioStreamer(audioFile: Mp3Model())
+        streamer.addObserver(self, forKeyPath: "status", options: .new, context: nil)
+        streamer.volume = 0
+        streamer.play()
     }
     
     func handlerResult() {
@@ -218,6 +237,8 @@ class LongDrageViewController: UIViewController {
         
         if type == 1 {
             tempText = Constant.ShipTag + text
+        }else {
+            tempText = Constant.PK10Tag + text
         }
         
         if self.datas.contains(tempText) {
@@ -228,22 +249,30 @@ class LongDrageViewController: UIViewController {
         }
         self.datas.append(tempText)
         self.tableView.reloadData()
-        self.playAlarm()
+        if isVibration.isOn {
+            self.playVibration()
+        }else {
+            self.playAlarm()
+        }
     }
     
     func playSilentMusic() {
         if let streamer = DOUAudioStreamer.init(audioFile: Mp3Model()) {
             self.streamer = streamer
             streamer.addObserver(self, forKeyPath: "status", options: .new, context: nil)
+            streamer.volume = 0
             streamer.play()
         }
     }
     
     /// 播放警报音效
     func playAlarm() {
+        streamer.pause()
+        
         if !self.isPlaying {
             //建立的SystemSoundID对象
             var soundID:SystemSoundID = SystemSoundID(kSystemSoundID_Vibrate)
+            
             //获取声音地址
             let path = Bundle.main.path(forResource: "media.io_66724", ofType: "wav")
             //                            let path = Bundle.main.path(forResource: "69153", ofType: "wav")
@@ -252,7 +281,7 @@ class LongDrageViewController: UIViewController {
             //赋值
             AudioServicesCreateSystemSoundID(baseURL, &soundID)
             
-             self.playSoundId = soundID
+            self.playSoundId = soundID
             
             //添加音频结束时的回调
             let observer = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
@@ -282,14 +311,54 @@ class LongDrageViewController: UIViewController {
         }
     }
     
+    /// 振动
+    func playVibration() {
+        streamer.pause()
+        
+        if !self.isPlaying {
+            //建立的SystemSoundID对象
+            var soundID:SystemSoundID = SystemSoundID(kSystemSoundID_Vibrate)
+            
+            self.playSoundId = soundID
+            
+            //添加音频结束时的回调
+            let observer = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
+            AudioServicesAddSystemSoundCompletion(soundID, nil, nil, {
+                (soundID, inClientData) -> Void in
+                let mySelf = Unmanaged<LongDrageViewController>.fromOpaque(inClientData!)
+                    .takeUnretainedValue()
+                mySelf.perform(#selector(self.playSound), with: nil, afterDelay: 1.0)
+                
+                mySelf.vibrationTime -=  1
+                if mySelf.vibrationTime <= 0 {
+                    mySelf.vibrationTime = 0
+                }
+                
+            }, observer)
+            
+            //播放声音
+            AudioServicesPlaySystemSound(soundID)
+            
+            self.isPlaying = true
+        }
+    }
+    
     @objc func playSound() {
         if vibrationTime != 0 {
             AudioServicesPlaySystemSound(playSoundId)
         }else {
-            vibrationTime = 3
+            if isVibration.isOn {
+                vibrationTime = 10
+            }else {
+                vibrationTime = 3
+            }
             isPlaying = false
             AudioServicesRemoveSystemSoundCompletion(playSoundId)
             AudioServicesDisposeSystemSoundID(playSoundId)
+            
+            if streamer.status != .playing {
+                streamer.play()
+            }
         }
     }
     
